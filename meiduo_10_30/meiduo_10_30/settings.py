@@ -26,7 +26,7 @@ SECRET_KEY = '9$8inbun3v$sifp3hsdyjx(y3b9dh9&!v_1-njrs0!@(#7jinz'
 DEBUG = True
 
 #允许哪些主机访问
-ALLOWED_HOSTS = ['127.0.0.1', 'www.meiduo.site']
+ALLOWED_HOSTS = ['127.0.0.1', 'www.meiduo.site'] #  不填也行 因为在系统配置文件中已添加
 
 
 # Application definition
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.users',
 ]
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
