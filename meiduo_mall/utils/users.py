@@ -54,21 +54,23 @@ class UsernameMobileModelBackend(ModelBackend):
 
     def authenticate(self, request, username=None, password=None, **kwargs):
         # 1. 区分 手机号 和 用户名
-        # try:
-        #     if re.match(r'1[3-9]\d{9}',username):
+        try:
+            if re.match(r'1[3-9]\d{9}',username):
         #         # 手机号登陆
-        #         user = User.objects.get(mobile=username)
-        #     else:
+                user = User.objects.get(mobile=username, is_staff=True)
+            else:
         #         # 用户名登陆
-        #         user=User.objects.get(username=username)
-        # except Exception as e:
-        #     logger.error(e)
-        #     return None
-        # else:
+                user=User.objects.get(username=username, is_staff=True)
+        except Exception as e:
 
-        #1.就要一个用户名
-        user = get_user_by_usernamemobile(username)
-        #2.检查密码
+            return None
         if user is not None and user.check_password(password):
             return user
+        else:
+
+            #1.就要一个用户名
+            user = get_user_by_usernamemobile(username)
+            #2.检查密码
+            if user is not None and user.check_password(password):
+                return user
 

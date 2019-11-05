@@ -56,9 +56,11 @@ INSTALLED_APPS = [
     'apps.goods',
     'apps.orders',
     'apps.payment',
+    'apps.meiduo_admin',
     'django_crontab',
     'corsheaders',
-    'rest_framework'
+    'rest_framework''',
+
 ]
 
 CRONJOBS = [
@@ -361,4 +363,7 @@ REST_FRAMEWORK = {
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+    'apps.meiduo_admin.utils.jwt_response_payload_handler',
+
 }
